@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -exuv
 
 main() {
     if ! is-enabled "${NGINX_ENABLED:-1}"; then
