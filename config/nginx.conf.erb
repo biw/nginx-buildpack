@@ -1,7 +1,6 @@
 daemon off;
-worker_processes <%= ENV['NGINX_WORKERS'] %>;
+worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
 pid /app/nginx.pid;
-error_log stderr;
 
 events {
     use epoll;
@@ -10,16 +9,18 @@ events {
 }
 
 http {
-    <% if ENV['NGINX_GZIP_ENABLED'] == '1' %>
     gzip on;
     gzip_disable msie6;
     gzip_min_length 512;
     gzip_proxied <%= ENV['NGINX_GZIP_PROXIED'] %>;
     gzip_types <%= ENV['NGINX_GZIP_TYPES'] %>;
-    <% end %>
+
+    server_tokens off;
 
     log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id';
-    access_log error l2met;
+    access_log logs/nginx/access.log l2met;
+    error_log logs/nginx/error.log;
+
 
     include mime.types;
     default_type application/octet-stream;

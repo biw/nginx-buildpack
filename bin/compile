@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -exuv
 
 main() {
     APP_DIR=/app
@@ -8,14 +9,14 @@ main() {
     BUILDPACK_DIR=$(readlink -f $(dirname $(type -P "$0"))/..)
     LUA_JIT_DIR=$BUILD_DIR/vendor/lua_jit
 
-    LUA_JIT_VERSION=2.0.4
+    LUA_JIT_VERSION=2.0.5
     NGINX_VERSION=1.8.0
     NGINX_PCRE_VERSION=8.37
     NGINX_HEADERS_MORE_VERSION=0.261
     NGINX_DEVEL_KIT_VERSION=0.2.19
     NGINX_LUA_VERSION=0.9.18
     RESTY_REDIS_VERSION=0.21
-
+    
     set -eo pipefail
 
     load-env
