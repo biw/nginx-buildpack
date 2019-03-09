@@ -80,7 +80,7 @@ run-nginx() {
     done
 
 
-    sleep 10
+    sleep 5
 }
 
 app-start() {
