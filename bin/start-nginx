@@ -78,6 +78,9 @@ run-nginx() {
         at "kill-aux name=$name pid=${pids[$name]} signal=${signals[$name]}"
         kill -SIGHUP "${pids[$name]}"
     done
+
+
+    sleep 10
 }
 
 app-start() {
