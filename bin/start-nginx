@@ -65,8 +65,8 @@ run-nginx() {
     # Clean up any running processes.
     # SIGTERM application just in case something else crashed.
     # If the dyno is shutting down, then SIGTERM has already been sent.
-    at "kill-app pid=$pid"
-    kill -SIGTERM $pid
+    # at "kill-app pid=$pid"
+    # kill -SIGTERM $pid
 
     # Wait for the app to finish.
     at "wait-app pid=$pid"
